@@ -1,9 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Staff - Admin</title>
 </head>
 <body class="bg-brand-light text-brand-dark font-sans min-h-screen flex flex-col">
@@ -42,7 +44,6 @@
                             class="block w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all cursor-pointer">
                         <option value="Admin">Admin</option>
                         <option value="Super Admin">Super Admin</option>
-                        <option value="Moderator">Moderator</option>
                     </select>
                 </div>
                 <div>
@@ -99,7 +100,6 @@
                                                         </c:choose>">
                                                     <option value="Admin" <c:if test="${staff.roleLevel == 'Admin'}">selected</c:if>>Admin</option>
                                                     <option value="Super Admin" <c:if test="${staff.roleLevel == 'Super Admin'}">selected</c:if>>Super Admin</option>
-                                                    <option value="Moderator" <c:if test="${staff.roleLevel == 'Moderator'}">selected</c:if>>Moderator</option>
                                                 </select>
                                             </form>
                                         </td>

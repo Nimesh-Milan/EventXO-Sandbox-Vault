@@ -16,8 +16,8 @@
 
             <div class="relative z-10 w-full md:w-1/2 max-w-md">
                 <form class="flex items-center bg-white/10 p-1.5 rounded-full border border-white/20 backdrop-blur-md">
-                    <input type="email" placeholder="Your student email..." class="flex-1 bg-transparent px-4 text-white placeholder-gray-300 outline-none text-sm">
-                    <button type="button" class="bg-white text-brand-dark px-6 py-2.5 rounded-full text-sm font-bold hover:bg-gray-100 transition-colors">
+                    <input type="email" placeholder="Your student email..." class="flex-1 bg-transparent px-4 text-white placeholder-gray-300 outline-none text-sm w-full min-w-0">
+                    <button type="button" class="bg-white text-brand-dark px-4 sm:px-6 py-2.5 rounded-full text-sm font-bold hover:bg-gray-100 transition-colors whitespace-nowrap">
                         Subscribe
                     </button>
                 </form>
@@ -77,7 +77,7 @@
         <!-- Bottom Bar -->
         <div class="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
             <p class="text-sm text-gray-500 font-medium flex items-center gap-1">
-                &copy; 2024 Eventxo. Crafted with <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg> for students.
+                &copy; 2026 Eventxo. Crafted with <svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg> for students.
             </p>
             <div class="flex gap-6 text-xs text-gray-500 font-semibold">
                 <a href="#" class="hover:text-brand-dark transition-colors">Privacy Policy</a>

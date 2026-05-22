@@ -48,6 +48,7 @@ public class CustomerController {
     public String showLoginForm(
             @RequestParam(value = "registered", required = false) String registered, 
             @RequestParam(value = "error", required = false) String error, 
+            @RequestParam(value = "logout", required = false) String logout, 
             HttpSession session,
             Model model) {
         
@@ -57,6 +58,9 @@ public class CustomerController {
         
         if ("true".equals(registered)) {
             model.addAttribute("successMessage", "Account created successfully. Please sign in.");
+        }
+        if ("success".equals(logout)) {
+            model.addAttribute("successMessage", "You have been successfully logged out.");
         }
         if ("invalid".equals(error)) {
             model.addAttribute("errorMessage", "Invalid email or password.");
@@ -81,6 +85,7 @@ public class CustomerController {
                     // Valid credentials, save to session
                     session.setAttribute("loggedInUser", parts[1]);
                     session.setAttribute("loggedInEmail", email);
+                    session.setAttribute("isAdmin", false);
                     
                     // Capture member since date if it exists, otherwise default to Today
                     String memberSince = (parts.length >= 5) ? parts[4] : "Today";

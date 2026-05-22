@@ -1,2 +1,1 @@
-720d3131-355d-4aa5-bdd1-03dad365c930,Tech Workshop,Nov 20, 2024,200
-e9c6394a-1472-4d14-a3bf-5000df3110c9,Tech Workshop,Nov 20, 2026,100
+720d3131-355d-4aa5-bdd1-03dad365c930|Tech Workshop|Nov 20, 2026|200

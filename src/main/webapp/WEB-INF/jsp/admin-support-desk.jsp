@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Support Desk - Admin</title>
 </head>
 <body class="bg-lux-dark text-white font-sans min-h-screen flex flex-col">

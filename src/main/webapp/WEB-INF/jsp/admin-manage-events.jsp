@@ -5,6 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Events - Admin</title>
 </head>
 <body class="bg-brand-light text-brand-dark font-sans min-h-screen flex flex-col">
@@ -39,7 +40,7 @@
                 </div>
                 <div class="md:col-span-1">
                     <label for="date" class="block text-sm font-medium text-gray-700 mb-1.5">Date</label>
-                    <input type="text" id="date" name="date" required placeholder="e.g. Nov 20, 2024"
+                    <input type="text" id="date" name="date" required placeholder="e.g. Nov 20, 2026"
                            class="block w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all">
                 </div>
                 <div class="md:col-span-1">

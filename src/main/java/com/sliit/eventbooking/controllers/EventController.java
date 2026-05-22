@@ -30,7 +30,7 @@ public class EventController {
         List<Event> events = new ArrayList<>();
 
         for (String record : eventRecords) {
-            String[] parts = record.split(",");
+            String[] parts = record.split("\\|");
             if (parts.length == 4) {
                 try {
                     String eventId = parts[0];
@@ -56,7 +56,7 @@ public class EventController {
         List<Event> events = new ArrayList<>();
 
         for (String record : eventRecords) {
-            String[] parts = record.split(",");
+            String[] parts = record.split("\\|");
             if (parts.length == 4) {
                 try {
                     String eventId = parts[0];
@@ -95,10 +95,10 @@ public class EventController {
             
         List<String> records = FileHandler.readAllRecords("events.txt");
         for (int i = 0; i < records.size(); i++) {
-            if (records.get(i).startsWith(eventId + ",")) {
-                String[] parts = records.get(i).split(",");
+            if (records.get(i).startsWith(eventId + "|")) {
+                String[] parts = records.get(i).split("\\|");
                 if (parts.length >= 4) {
-                    records.set(i, parts[0] + "," + title + "," + date + "," + availableTickets);
+                    records.set(i, parts[0] + "|" + title + "|" + date + "|" + availableTickets);
                 }
                 break;
             }
@@ -110,7 +110,7 @@ public class EventController {
     @PostMapping("/admin/delete-event")
     public String deleteEvent(@RequestParam("eventId") String eventId) {
         List<String> records = FileHandler.readAllRecords("events.txt");
-        records.removeIf(record -> record.startsWith(eventId + ","));
+        records.removeIf(record -> record.startsWith(eventId + "|"));
         FileHandler.rewriteFile("events.txt", records);
         return "redirect:/admin/manage-events";
     }

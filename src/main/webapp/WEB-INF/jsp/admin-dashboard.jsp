@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Eventxo</title>
 </head>
 <body class="bg-brand-light text-brand-dark font-sans min-h-screen flex flex-col">
@@ -16,6 +17,7 @@
             </div>
             <div class="flex gap-3">
                 <a href="/admin/manage-events" class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors shadow-sm">Manage Events</a>
+                <a href="/admin/manage-venues" class="bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors shadow-sm">Manage Venues</a>
                 <a href="/admin/manage-staff" class="bg-brand-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors shadow-sm">Manage Staff</a>
             </div>
         </div>

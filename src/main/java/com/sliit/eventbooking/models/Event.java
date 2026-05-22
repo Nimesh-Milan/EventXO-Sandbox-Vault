@@ -49,6 +49,6 @@ public class Event {
     }
 
     public String toFileString() {
-        return eventId + "," + title + "," + date + "," + availableTickets;
+        return eventId + "|" + title + "|" + date + "|" + availableTickets;
     }
 }

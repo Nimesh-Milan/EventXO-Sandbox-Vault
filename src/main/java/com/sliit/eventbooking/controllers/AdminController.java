@@ -32,7 +32,8 @@ public class AdminController {
         // For demonstration, a simple hardcoded check. 
         // In a real app, you'd check against a database or admins.txt
         if ("admin".equals(username) && "admin".equals(password)) {
-            session.setAttribute("loggedInAdmin", username);
+            session.setAttribute("loggedInUser", username);
+            session.setAttribute("isAdmin", true);
             return "redirect:/admin/dashboard";
         }
         
@@ -42,7 +43,8 @@ public class AdminController {
             String[] parts = record.split(",");
             if (parts.length >= 2) {
                 if (parts[1].equals(username) && "password".equals(password)) { // Defaulting all staff passwords to 'password'
-                    session.setAttribute("loggedInAdmin", username);
+                    session.setAttribute("loggedInUser", username);
+                    session.setAttribute("isAdmin", true);
                     return "redirect:/admin/dashboard";
                 }
             }
