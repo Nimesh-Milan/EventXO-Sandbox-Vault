@@ -63,9 +63,9 @@
                                     </div>
                                 </div>
 
-                                <button class="mt-8 w-full bg-white border border-brand-primary text-brand-primary font-semibold py-3 rounded-xl hover:bg-brand-primary hover:text-white transition-colors group-hover:shadow-sm">
+                                <a href="/book-venue?venueName=${venue.locationName}" class="mt-8 block w-full text-center bg-white border border-brand-primary text-brand-primary font-semibold py-3 rounded-xl hover:bg-brand-primary hover:text-white transition-colors group-hover:shadow-sm">
                                     Inquire Now
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </c:forEach>

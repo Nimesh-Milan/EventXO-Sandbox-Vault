@@ -49,16 +49,6 @@
                     <li><a href="/" class="hover:text-brand-primary transition-colors flex items-center gap-1 group"><span class="w-0 group-hover:w-2 transition-all overflow-hidden h-px bg-brand-primary inline-block"></span> Home</a></li>
                     <li><a href="/events" class="hover:text-brand-primary transition-colors flex items-center gap-1 group"><span class="w-0 group-hover:w-2 transition-all overflow-hidden h-px bg-brand-primary inline-block"></span> Browse Events</a></li>
                     <li><a href="/venues" class="hover:text-brand-primary transition-colors flex items-center gap-1 group"><span class="w-0 group-hover:w-2 transition-all overflow-hidden h-px bg-brand-primary inline-block"></span> Venues & Spaces</a></li>
-                    <li><a href="/reviews" class="hover:text-brand-primary transition-colors flex items-center gap-1 group"><span class="w-0 group-hover:w-2 transition-all overflow-hidden h-px bg-brand-primary inline-block"></span> Student Reviews</a></li>
-                </ul>
-            </div>
-
-            <div class="md:col-span-3 lg:col-span-2">
-                <h4 class="font-display font-bold text-brand-dark mb-4 text-sm uppercase tracking-wider">Support</h4>
-                <ul class="space-y-3 text-sm text-gray-500 font-medium">
-                    <li><a href="/support" class="hover:text-brand-primary transition-colors flex items-center gap-1 group"><span class="w-0 group-hover:w-2 transition-all overflow-hidden h-px bg-brand-primary inline-block"></span> Help Center</a></li>
-                    <li><a href="/support" class="hover:text-brand-primary transition-colors flex items-center gap-1 group"><span class="w-0 group-hover:w-2 transition-all overflow-hidden h-px bg-brand-primary inline-block"></span> Contact Us</a></li>
-                    <li><a href="#" class="hover:text-brand-primary transition-colors flex items-center gap-1 group"><span class="w-0 group-hover:w-2 transition-all overflow-hidden h-px bg-brand-primary inline-block"></span> FAQ</a></li>
                 </ul>
             </div>
 

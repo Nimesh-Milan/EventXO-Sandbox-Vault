@@ -45,6 +45,29 @@ public class BookingController {
         return "redirect:/my-tickets";
     }
 
+    @GetMapping("/book-venue")
+    public String showBookVenueForm() {
+        return "book-venue";
+    }
+
+    @PostMapping("/book-venue")
+    public String bookVenue(
+            @RequestParam("customerName") String customerName,
+            @RequestParam("venueName") String venueName,
+            @RequestParam("bookingDate") String bookingDate,
+            @RequestParam("hours") int hours) {
+        
+        String bookingId = UUID.randomUUID().toString();
+        // For now, we'll store venue bookings in the same file as tickets
+        // but prefix the eventName with "Venue: " to distinguish them
+        Ticket ticket = new Ticket(bookingId, customerName, "Venue: " + venueName + " (" + bookingDate + ", " + hours + " hrs)", 1);
+        
+        bookingQueue.enqueueBooking(ticket);
+        bookingQueue.processQueue();
+        
+        return "redirect:/my-tickets";
+    }
+
     @GetMapping("/my-tickets")
     public String showMyTickets(Model model) {
         List<String> bookingRecords = FileHandler.readAllRecords("bookings.txt");
