@@ -5,50 +5,38 @@ public class Ticket {
     private String customerName;
     private String eventName;
     private int quantity;
+    private double price;
 
-    public Ticket() {
-    }
-
-    public Ticket(String ticketId, String customerName, String eventName, int quantity) {
+    public Ticket(String ticketId, String customerName, String eventName, int quantity, double price) {
         this.ticketId = ticketId;
         this.customerName = customerName;
         this.eventName = eventName;
         this.quantity = quantity;
+        this.price = price;
     }
 
+    // Getters
     public String getTicketId() {
         return ticketId;
-    }
-
-    public void setTicketId(String ticketId) {
-        this.ticketId = ticketId;
     }
 
     public String getCustomerName() {
         return customerName;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
     public String getEventName() {
         return eventName;
-    }
-
-    public void setEventName(String eventName) {
-        this.eventName = eventName;
     }
 
     public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public double getPrice() {
+        return price;
     }
 
     public String toFileString() {
-        return ticketId + "," + customerName + "," + eventName + "," + quantity;
+        return ticketId + "," + customerName + "," + eventName + "," + quantity + "," + price;
     }
 }

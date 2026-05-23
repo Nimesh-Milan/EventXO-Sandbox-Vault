@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,7 +61,7 @@
                                 <!-- Inline Edit Quantity Form -->
                                 <form action="/update-ticket" method="post" class="flex justify-between items-center m-0">
                                     <input type="hidden" name="ticketId" value="${ticket.ticketId}">
-                                    <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Quantity</span>
+                                    <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Quantity/Hrs</span>
                                     <div class="flex items-center gap-2">
                                         <input type="number" name="quantity" value="${ticket.quantity}" min="1" required
                                                class="w-16 px-2 py-1 bg-white border border-gray-200 rounded-lg text-center text-sm font-semibold text-brand-dark focus:outline-none focus:border-brand-primary">
@@ -69,6 +70,14 @@
                                         </button>
                                     </div>
                                 </form>
+                                <div class="border-t border-gray-200"></div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Total Price</span>
+                                    <span class="text-sm font-bold text-emerald-600">
+                                        <fmt:setLocale value="en_US"/>
+                                        <fmt:formatNumber value="${ticket.price}" type="currency"/>
+                                    </span>
+                                </div>
                             </div>
 
                             <div class="pt-4 border-t border-gray-100 flex items-center justify-between">

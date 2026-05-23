@@ -36,7 +36,8 @@ public class BookingController {
             @RequestParam("quantity") int quantity) {
         
         String ticketId = UUID.randomUUID().toString();
-        Ticket ticket = new Ticket(ticketId, customerName, eventName, quantity);
+        double price = quantity * 15.00; // Hardcoded $15 per ticket for simplicity
+        Ticket ticket = new Ticket(ticketId, customerName, eventName, quantity, price);
         
         // Add to queue and process it
         bookingQueue.enqueueBooking(ticket);
@@ -58,9 +59,25 @@ public class BookingController {
             @RequestParam("hours") int hours) {
         
         String bookingId = UUID.randomUUID().toString();
+        
+        // Find venue price
+        double hourlyRate = 50.0; // Default fallback
+        List<String> venues = FileHandler.readAllRecords("venues.txt");
+        for (String v : venues) {
+            String[] parts = v.split(",");
+            if (parts.length >= 4 && parts[1].equals(venueName)) {
+                try {
+                    hourlyRate = Double.parseDouble(parts[3]);
+                } catch (Exception e) {}
+                break;
+            }
+        }
+        
+        double price = hours * hourlyRate;
+        
         // For now, we'll store venue bookings in the same file as tickets
         // but prefix the eventName with "Venue: " to distinguish them
-        Ticket ticket = new Ticket(bookingId, customerName, "Venue: " + venueName + " (" + bookingDate + ", " + hours + " hrs)", 1);
+        Ticket ticket = new Ticket(bookingId, customerName, "Venue: " + venueName + " (" + bookingDate + ")", hours, price);
         
         bookingQueue.enqueueBooking(ticket);
         bookingQueue.processQueue();
@@ -75,15 +92,19 @@ public class BookingController {
 
         for (String record : bookingRecords) {
             String[] parts = record.split(",");
-            if (parts.length == 4) {
+            if (parts.length >= 4) {
                 try {
                     String ticketId = parts[0];
                     String customerName = parts[1];
                     String eventName = parts[2];
                     int quantity = Integer.parseInt(parts[3]);
-                    tickets.add(new Ticket(ticketId, customerName, eventName, quantity));
+                    double price = 0.0;
+                    if (parts.length >= 5) {
+                        price = Double.parseDouble(parts[4]);
+                    }
+                    tickets.add(new Ticket(ticketId, customerName, eventName, quantity, price));
                 } catch (NumberFormatException e) {
-                    System.err.println("Error parsing quantity for ticket: " + record);
+                    System.err.println("Error parsing data for ticket: " + record);
                 }
             }
         }
@@ -102,8 +123,25 @@ public class BookingController {
             if (records.get(i).startsWith(ticketId + ",")) {
                 String[] parts = records.get(i).split(",");
                 if (parts.length >= 4) {
-                    // Update only the quantity
-                    records.set(i, parts[0] + "," + parts[1] + "," + parts[2] + "," + quantity);
+                    double unitPrice = 15.0; // Default ticket price
+                    if(parts[2].startsWith("Venue:")) {
+                        // It's a venue booking, quantity is hours.
+                        // We need to recalculate based on the old price and old hours to find the hourly rate
+                        try {
+                            int oldHours = Integer.parseInt(parts[3]);
+                            double oldPrice = Double.parseDouble(parts[4]);
+                            unitPrice = oldPrice / oldHours;
+                        } catch (Exception e) {}
+                    } else if (parts.length >= 5) {
+                        try {
+                           int oldQty = Integer.parseInt(parts[3]);
+                           double oldPrice = Double.parseDouble(parts[4]);
+                           unitPrice = oldPrice / oldQty;
+                        } catch (Exception e) {}
+                    }
+                    
+                    double newPrice = quantity * unitPrice;
+                    records.set(i, parts[0] + "," + parts[1] + "," + parts[2] + "," + quantity + "," + newPrice);
                 }
                 break;
             }

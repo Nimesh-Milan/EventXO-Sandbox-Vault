@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,8 +40,9 @@
                                 <tr class="bg-gray-50 border-b border-gray-200">
                                     <th class="py-4 px-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">Ticket ID</th>
                                     <th class="py-4 px-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">Customer Name</th>
-                                    <th class="py-4 px-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">Event Name</th>
-                                    <th class="py-4 px-6 text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">Quantity</th>
+                                    <th class="py-4 px-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">Details</th>
+                                    <th class="py-4 px-6 text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">Quantity/Hours</th>
+                                    <th class="py-4 px-6 text-xs font-semibold text-gray-500 uppercase tracking-wider text-right">Total Price</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-100">
@@ -50,9 +52,13 @@
                                         <td class="py-4 px-6 text-sm font-bold text-brand-dark"><c:out value="${booking.customerName}" /></td>
                                         <td class="py-4 px-6 text-sm text-brand-primary font-medium"><c:out value="${booking.eventName}" /></td>
                                         <td class="py-4 px-6 text-sm text-center">
-                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200">
                                                 <c:out value="${booking.quantity}" />
                                             </span>
+                                        </td>
+                                        <td class="py-4 px-6 text-sm text-right font-bold text-emerald-600">
+                                            <fmt:setLocale value="en_US"/>
+                                            <fmt:formatNumber value="${booking.price}" type="currency"/>
                                         </td>
                                     </tr>
                                 </c:forEach>

@@ -56,10 +56,8 @@ public class AdminController {
     @GetMapping("/admin/dashboard")
     public String showAdminDashboard(Model model) {
         List<String> bookings = FileHandler.readAllRecords("bookings.txt");
-        List<String> inquiries = FileHandler.readAllRecords("inquiries.txt");
         
         model.addAttribute("totalBookings", bookings.size());
-        model.addAttribute("totalInquiries", inquiries.size());
         
         return "admin-dashboard";
     }
@@ -71,15 +69,19 @@ public class AdminController {
 
         for (String record : bookingRecords) {
             String[] parts = record.split(",");
-            if (parts.length == 4) {
+            if (parts.length >= 4) {
                 try {
                     String ticketId = parts[0];
                     String customerName = parts[1];
                     String eventName = parts[2];
                     int quantity = Integer.parseInt(parts[3]);
-                    bookings.add(new Ticket(ticketId, customerName, eventName, quantity));
+                    double price = 0.0;
+                    if (parts.length >= 5) {
+                        price = Double.parseDouble(parts[4]);
+                    }
+                    bookings.add(new Ticket(ticketId, customerName, eventName, quantity, price));
                 } catch (NumberFormatException e) {
-                    System.err.println("Error parsing quantity for ticket: " + record);
+                    System.err.println("Error parsing data for ticket: " + record);
                 }
             }
         }

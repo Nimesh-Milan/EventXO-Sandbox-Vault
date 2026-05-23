@@ -29,48 +29,62 @@
             <c:otherwise>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <c:forEach var="event" items="${events}">
-                        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl hover:shadow-brand-primary/10 transition-all duration-300 group flex flex-col h-full transform hover:-translate-y-1">
-                            <!-- Event Header Image / Pattern placeholder -->
-                            <div class="h-32 bg-gradient-to-r from-indigo-500 to-purple-600 relative overflow-hidden">
-                                <div class="absolute inset-0 bg-white/20 blur-2xl rounded-full transform scale-150 -top-10 -right-10"></div>
-                                <div class="absolute bottom-4 left-6 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-brand-dark shadow-sm">
+                        <div class="bg-white rounded-3xl shadow-md border border-gray-100 overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-full group">
+                            <!-- Image/Header Area -->
+                            <div class="h-48 relative overflow-hidden bg-gradient-to-br from-gray-900 to-brand-dark">
+                                <div class="absolute inset-0 opacity-40 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+                                <div class="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-bold text-brand-primary shadow-sm flex items-center gap-1.5">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                                     <c:out value="${event.date}" />
+                                </div>
+                                <div class="absolute bottom-4 left-4">
+                                     <span class="px-2.5 py-1 bg-white/20 backdrop-blur-md rounded-lg text-white text-xs font-semibold uppercase tracking-wider border border-white/30">Campus Event</span>
                                 </div>
                             </div>
 
-                            <div class="p-6 flex flex-col flex-grow">
-                                <h3 class="text-xl font-display font-bold text-brand-dark mb-4 group-hover:text-brand-primary transition-colors line-clamp-2">
+                            <div class="p-6 flex flex-col flex-grow relative bg-white">
+                                <!-- Price Badge (Floating) -->
+                                <div class="absolute -top-6 right-6 w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg border-2 border-white group-hover:scale-110 transition-transform">
+                                    $15
+                                </div>
+
+                                <h3 class="text-2xl font-display font-bold text-brand-dark mb-2 mt-2 leading-tight group-hover:text-brand-primary transition-colors">
                                     <c:out value="${event.title}" />
                                 </h3>
+
+                                <p class="text-gray-500 text-sm mb-6 line-clamp-2">Join us for this exciting campus event. Connect with peers, learn new skills, and make the most of your university experience.</p>
 
                                 <div class="mt-auto space-y-4 pt-4 border-t border-gray-100">
                                     <div class="flex items-center justify-between text-sm">
                                         <div class="flex items-center text-gray-500 font-medium">
-                                            <svg class="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path></svg>
+                                            <div class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center mr-3 text-brand-primary">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path></svg>
+                                            </div>
                                             Availability
                                         </div>
 
                                         <c:choose>
                                             <c:when test="${event.availableTickets <= 0}">
-                                                <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-50 text-red-600 border border-red-100">
+                                                <span class="px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-700">
                                                     Sold Out
                                                 </span>
                                             </c:when>
                                             <c:otherwise>
-                                                <span class="font-bold text-brand-dark"><c:out value="${event.availableTickets}" /> <span class="font-normal text-gray-500">left</span></span>
+                                                <span class="font-bold text-brand-dark bg-gray-100 px-3 py-1 rounded-full"><c:out value="${event.availableTickets}" /> <span class="font-medium text-gray-500 ml-1">left</span></span>
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
 
                                     <c:choose>
                                         <c:when test="${event.availableTickets > 0}">
-                                            <a href="/book-ticket?eventName=${event.title}" class="block w-full text-center bg-brand-light text-brand-primary font-medium py-3 rounded-xl hover:bg-brand-primary hover:text-white transition-colors">
-                                                Book Ticket
+                                            <a href="/book-ticket?eventName=${event.title}" class="mt-4 flex items-center justify-center gap-2 w-full bg-brand-dark text-white font-semibold py-3.5 rounded-xl hover:bg-brand-primary transition-all shadow-md group-hover:shadow-lg transform active:scale-95">
+                                                <span>Reserve Spot</span>
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                                             </a>
                                         </c:when>
                                         <c:otherwise>
-                                            <button disabled class="w-full text-center bg-gray-100 text-gray-400 font-medium py-3 rounded-xl cursor-not-allowed">
-                                                Unavailable
+                                            <button disabled class="mt-4 w-full text-center bg-gray-100 text-gray-400 font-semibold py-3.5 rounded-xl cursor-not-allowed">
+                                                Event Full
                                             </button>
                                         </c:otherwise>
                                     </c:choose>
