@@ -59,7 +59,7 @@
                                             </div>
                                             Rate
                                         </div>
-                                        <span class="font-semibold text-brand-dark">$<c:out value="${venue.pricePerHour}" /> <span class="text-gray-400 font-normal">/ hr</span></span>
+                                        <span class="font-semibold text-brand-dark"><c:out value="${venue.pricePerHour}" /> LKR <span class="text-gray-400 font-normal">/ hr</span></span>
                                     </div>
                                 </div>
 

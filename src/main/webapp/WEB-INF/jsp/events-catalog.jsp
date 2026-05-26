@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,8 +45,9 @@
 
                             <div class="p-6 flex flex-col flex-grow relative bg-white">
                                 <!-- Price Badge (Floating) -->
-                                <div class="absolute -top-6 right-6 w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg border-2 border-white group-hover:scale-110 transition-transform">
-                                    $15
+                                <div class="absolute -top-6 right-6 min-w-[3rem] h-12 bg-emerald-500 rounded-full px-2 flex flex-col items-center justify-center text-white font-bold shadow-lg border-2 border-white group-hover:scale-110 transition-transform">
+                                    <span class="text-[10px] font-medium leading-none mb-0.5">LKR</span>
+                                    <span class="leading-none text-sm"><c:out value="${event.price}" /></span>
                                 </div>
 
                                 <h3 class="text-2xl font-display font-bold text-brand-dark mb-2 mt-2 leading-tight group-hover:text-brand-primary transition-colors">

@@ -1,1 +1,1 @@
-c4848644-6f67-4cbe-8af9-d9d3097aab0e,Main Hall,500,50.0
+c4848644-6f67-4cbe-8af9-d9d3097aab0e,Main Hall,500,5000.0

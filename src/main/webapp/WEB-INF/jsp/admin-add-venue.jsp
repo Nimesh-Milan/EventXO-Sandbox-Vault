@@ -32,8 +32,8 @@
                                class="block w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all">
                     </div>
                     <div class="flex-1">
-                        <label for="pricePerHour" class="block text-sm font-medium text-gray-700 mb-1.5">Price / Hour ($)</label>
-                        <input type="number" id="pricePerHour" name="pricePerHour" step="0.01" min="0" required placeholder="e.g. 50.00"
+                        <label for="pricePerHour" class="block text-sm font-medium text-gray-700 mb-1.5">Price / Hour (LKR)</label>
+                        <input type="number" id="pricePerHour" name="pricePerHour" step="0.01" min="0" required placeholder="e.g. 15000.00"
                                class="block w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all">
                     </div>
                 </div>

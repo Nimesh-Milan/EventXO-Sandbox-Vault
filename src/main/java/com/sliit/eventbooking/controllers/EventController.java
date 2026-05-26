@@ -31,13 +31,17 @@ public class EventController {
 
         for (String record : eventRecords) {
             String[] parts = record.split("\\|");
-            if (parts.length == 4) {
+            if (parts.length >= 4) {
                 try {
                     String eventId = parts[0];
                     String title = parts[1];
                     String date = parts[2];
                     int availableTickets = Integer.parseInt(parts[3]);
-                    events.add(new Event(eventId, title, date, availableTickets));
+                    double price = 0.0;
+                    if (parts.length >= 5) {
+                        price = Double.parseDouble(parts[4]);
+                    }
+                    events.add(new Event(eventId, title, date, availableTickets, price));
                 } catch (NumberFormatException e) {
                     System.err.println("Error parsing ticket count for event: " + record);
                 }
@@ -57,13 +61,17 @@ public class EventController {
 
         for (String record : eventRecords) {
             String[] parts = record.split("\\|");
-            if (parts.length == 4) {
+            if (parts.length >= 4) {
                 try {
                     String eventId = parts[0];
                     String title = parts[1];
                     String date = parts[2];
                     int availableTickets = Integer.parseInt(parts[3]);
-                    events.add(new Event(eventId, title, date, availableTickets));
+                    double price = 0.0;
+                    if (parts.length >= 5) {
+                        price = Double.parseDouble(parts[4]);
+                    }
+                    events.add(new Event(eventId, title, date, availableTickets, price));
                 } catch (NumberFormatException e) {
                     System.err.println("Error parsing event record: " + record);
                 }
@@ -78,10 +86,11 @@ public class EventController {
     public String addEvent(
             @RequestParam("title") String title,
             @RequestParam("date") String date,
-            @RequestParam("availableTickets") int availableTickets) {
+            @RequestParam("availableTickets") int availableTickets,
+            @RequestParam("price") double price) {
         
         String eventId = UUID.randomUUID().toString();
-        Event event = new Event(eventId, title, date, availableTickets);
+        Event event = new Event(eventId, title, date, availableTickets, price);
         FileHandler.saveRecord("events.txt", event.toFileString());
         return "redirect:/admin/manage-events";
     }
@@ -91,14 +100,15 @@ public class EventController {
             @RequestParam("eventId") String eventId,
             @RequestParam("title") String title,
             @RequestParam("date") String date,
-            @RequestParam("availableTickets") int availableTickets) {
+            @RequestParam("availableTickets") int availableTickets,
+            @RequestParam("price") double price) {
             
         List<String> records = FileHandler.readAllRecords("events.txt");
         for (int i = 0; i < records.size(); i++) {
             if (records.get(i).startsWith(eventId + "|")) {
                 String[] parts = records.get(i).split("\\|");
                 if (parts.length >= 4) {
-                    records.set(i, parts[0] + "|" + title + "|" + date + "|" + availableTickets);
+                    records.set(i, parts[0] + "|" + title + "|" + date + "|" + availableTickets + "|" + price);
                 }
                 break;
             }

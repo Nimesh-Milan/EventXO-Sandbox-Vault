@@ -32,7 +32,7 @@
                 <h2 class="text-xl font-display font-bold text-brand-dark">Create New Event</h2>
             </div>
 
-            <form action="/admin/add-event" method="post" class="grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
+            <form action="/admin/add-event" method="post" class="grid grid-cols-1 md:grid-cols-5 gap-6 items-end">
                 <div class="md:col-span-1">
                     <label for="title" class="block text-sm font-medium text-gray-700 mb-1.5">Event Title</label>
                     <input type="text" id="title" name="title" required placeholder="e.g. Tech Workshop"
@@ -46,6 +46,11 @@
                 <div class="md:col-span-1">
                     <label for="availableTickets" class="block text-sm font-medium text-gray-700 mb-1.5">Tickets Available</label>
                     <input type="number" id="availableTickets" name="availableTickets" min="1" required placeholder="e.g. 150"
+                           class="block w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all">
+                </div>
+                <div class="md:col-span-1">
+                    <label for="price" class="block text-sm font-medium text-gray-700 mb-1.5">Price (LKR)</label>
+                    <input type="number" id="price" name="price" step="0.01" min="0" required placeholder="e.g. 4500.00"
                            class="block w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all">
                 </div>
                 <div class="md:col-span-1">
@@ -75,6 +80,7 @@
                                     <th class="py-4 px-6 text-xs font-semibold text-gray-500 uppercase tracking-wider w-1/3">Event Details</th>
                                     <th class="py-4 px-6 text-xs font-semibold text-gray-500 uppercase tracking-wider w-1/4">Date</th>
                                     <th class="py-4 px-6 text-xs font-semibold text-gray-500 uppercase tracking-wider w-1/6 text-center">Tickets</th>
+                                    <th class="py-4 px-6 text-xs font-semibold text-gray-500 uppercase tracking-wider w-1/6 text-center">Price</th>
                                     <th class="py-4 px-6 text-xs font-semibold text-gray-500 uppercase tracking-wider text-right">Actions</th>
                                 </tr>
                             </thead>
@@ -112,6 +118,10 @@
                                                            class="font-semibold text-brand-dark bg-transparent border-b border-transparent focus:border-brand-primary focus:outline-none transition-colors w-16 text-center p-1 mx-auto">
                                                     </c:otherwise>
                                                 </c:choose>
+                                            </td>
+                                            <td class="py-4 px-6 text-center">
+                                                <input type="number" name="price" value="${event.price}" step="0.01" min="0" required
+                                                       class="font-semibold text-emerald-600 bg-transparent border-b border-transparent focus:border-brand-primary focus:outline-none transition-colors w-24 text-center p-1 mx-auto">
                                             </td>
                                             <td class="py-4 px-6 text-right">
                                                 <div class="flex justify-end gap-2 items-center">

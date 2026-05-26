@@ -42,7 +42,7 @@
                                     <th class="py-4 px-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">Customer Name</th>
                                     <th class="py-4 px-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">Details</th>
                                     <th class="py-4 px-6 text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">Quantity/Hours</th>
-                                    <th class="py-4 px-6 text-xs font-semibold text-gray-500 uppercase tracking-wider text-right">Total Price</th>
+                                    <th class="py-4 px-6 text-xs font-semibold text-gray-500 uppercase tracking-wider text-right">Total Price (LKR)</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-100">
@@ -57,8 +57,7 @@
                                             </span>
                                         </td>
                                         <td class="py-4 px-6 text-sm text-right font-bold text-emerald-600">
-                                            <fmt:setLocale value="en_US"/>
-                                            <fmt:formatNumber value="${booking.price}" type="currency"/>
+                                            <fmt:formatNumber value="${booking.price}" pattern="#,##0.00"/>
                                         </td>
                                     </tr>
                                 </c:forEach>

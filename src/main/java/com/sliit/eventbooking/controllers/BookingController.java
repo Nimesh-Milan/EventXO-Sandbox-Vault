@@ -36,7 +36,21 @@ public class BookingController {
             @RequestParam("quantity") int quantity) {
         
         String ticketId = UUID.randomUUID().toString();
-        double price = quantity * 15.00; // Hardcoded $15 per ticket for simplicity
+        
+        // Find event price
+        double eventPrice = 4500.00; // Default fallback
+        List<String> events = FileHandler.readAllRecords("events.txt");
+        for (String e : events) {
+            String[] parts = e.split("\\|");
+            if (parts.length >= 5 && parts[1].equals(eventName)) {
+                try {
+                    eventPrice = Double.parseDouble(parts[4]);
+                } catch (Exception ex) {}
+                break;
+            }
+        }
+        
+        double price = quantity * eventPrice;
         Ticket ticket = new Ticket(ticketId, customerName, eventName, quantity, price);
         
         // Add to queue and process it
@@ -61,7 +75,7 @@ public class BookingController {
         String bookingId = UUID.randomUUID().toString();
         
         // Find venue price
-        double hourlyRate = 50.0; // Default fallback
+        double hourlyRate = 15000.0; // Default fallback in LKR
         List<String> venues = FileHandler.readAllRecords("venues.txt");
         for (String v : venues) {
             String[] parts = v.split(",");
@@ -123,7 +137,7 @@ public class BookingController {
             if (records.get(i).startsWith(ticketId + ",")) {
                 String[] parts = records.get(i).split(",");
                 if (parts.length >= 4) {
-                    double unitPrice = 15.0; // Default ticket price
+                    double unitPrice = 4500.0; // Default ticket price in LKR
                     if(parts[2].startsWith("Venue:")) {
                         // It's a venue booking, quantity is hours.
                         // We need to recalculate based on the old price and old hours to find the hourly rate

@@ -74,8 +74,7 @@
                                 <div class="flex justify-between items-center">
                                     <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Total Price</span>
                                     <span class="text-sm font-bold text-emerald-600">
-                                        <fmt:setLocale value="en_US"/>
-                                        <fmt:formatNumber value="${ticket.price}" type="currency"/>
+                                        <fmt:formatNumber value="${ticket.price}" pattern="#,##0.00 LKR"/>
                                     </span>
                                 </div>
                             </div>

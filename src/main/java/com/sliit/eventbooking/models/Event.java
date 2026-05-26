@@ -5,15 +5,17 @@ public class Event {
     private String title;
     private String date; // Format: YYYY-MM-DD
     private int availableTickets;
+    private double price;
 
     public Event() {
     }
 
-    public Event(String eventId, String title, String date, int availableTickets) {
+    public Event(String eventId, String title, String date, int availableTickets, double price) {
         this.eventId = eventId;
         this.title = title;
         this.date = date;
         this.availableTickets = availableTickets;
+        this.price = price;
     }
 
     public String getEventId() {
@@ -48,7 +50,15 @@ public class Event {
         this.availableTickets = availableTickets;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     public String toFileString() {
-        return eventId + "|" + title + "|" + date + "|" + availableTickets;
+        return eventId + "|" + title + "|" + date + "|" + availableTickets + "|" + price;
     }
 }

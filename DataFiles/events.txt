@@ -1,1 +1,4 @@
-720d3131-355d-4aa5-bdd1-03dad365c930|Tech Workshop|Nov 20, 2026|200
+be1fa80f-61dc-48ac-aede-dd3e9ab4d243|DSA Workshot|Nov 20, 2026|100|6000.0
+98054343-e33c-4123-864f-fd1a812d74f3|DM Workshop|Dec 15, 2026|150|2500.0
+78be939f-4ec8-4134-a7fa-0481f6c9a8ad|TW Workshop|Feb 10, 2026|200|3000.0
+a48b140b-76dc-4554-aea5-89fe1df455a1|Test|Nov 2, 2026|100|5400.0

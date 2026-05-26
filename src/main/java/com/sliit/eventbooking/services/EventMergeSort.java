@@ -3,60 +3,65 @@ package com.sliit.eventbooking.services;
 import com.sliit.eventbooking.models.Event;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class EventMergeSort {
+
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy", Locale.ENGLISH);
 
     public void sort(List<Event> events) {
         if (events == null || events.size() <= 1) {
             return;
         }
-        
-        List<Event> left = new ArrayList<>();
-        List<Event> right = new ArrayList<>();
-        int middle = events.size() / 2;
-
-        for (int i = 0; i < middle; i++) {
-            left.add(events.get(i));
-        }
-        for (int i = middle; i < events.size(); i++) {
-            right.add(events.get(i));
-        }
-
-        sort(left);
-        sort(right);
-        merge(events, left, right);
+        mergeSort(events, 0, events.size() - 1);
     }
 
-    private void merge(List<Event> result, List<Event> left, List<Event> right) {
-        int i = 0;
-        int j = 0;
-        int k = 0;
+    private void mergeSort(List<Event> events, int left, int right) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            mergeSort(events, left, mid);
+            mergeSort(events, mid + 1, right);
+            merge(events, left, mid, right);
+        }
+    }
 
-        while (i < left.size() && j < right.size()) {
-            // Compare dates lexicographically (YYYY-MM-DD works well with String comparison)
-            if (left.get(i).getDate().compareTo(right.get(j).getDate()) <= 0) {
-                result.set(k, left.get(i));
-                i++;
-            } else {
-                result.set(k, right.get(j));
-                j++;
+    private void merge(List<Event> events, int left, int mid, int right) {
+        List<Event> leftList = new ArrayList<>(events.subList(left, mid + 1));
+        List<Event> rightList = new ArrayList<>(events.subList(mid + 1, right + 1));
+
+        int i = 0, j = 0, k = left;
+
+        while (i < leftList.size() && j < rightList.size()) {
+            try {
+                LocalDate dateLeft = LocalDate.parse(leftList.get(i).getDate(), formatter);
+                LocalDate dateRight = LocalDate.parse(rightList.get(j).getDate(), formatter);
+
+                if (dateLeft.isBefore(dateRight) || dateLeft.isEqual(dateRight)) {
+                    events.set(k++, leftList.get(i++));
+                } else {
+                    events.set(k++, rightList.get(j++));
+                }
+            } catch (DateTimeParseException e) {
+                // Handle error or default to string comparison if parsing fails
+                if (leftList.get(i).getDate().compareTo(rightList.get(j).getDate()) <= 0) {
+                    events.set(k++, leftList.get(i++));
+                } else {
+                    events.set(k++, rightList.get(j++));
+                }
             }
-            k++;
         }
 
-        while (i < left.size()) {
-            result.set(k, left.get(i));
-            i++;
-            k++;
+        while (i < leftList.size()) {
+            events.set(k++, leftList.get(i++));
         }
-
-        while (j < right.size()) {
-            result.set(k, right.get(j));
-            j++;
-            k++;
+        while (j < rightList.size()) {
+            events.set(k++, rightList.get(j++));
         }
     }
 }

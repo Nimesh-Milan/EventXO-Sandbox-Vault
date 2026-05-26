@@ -72,7 +72,7 @@
                                             </td>
                                             <td class="py-4 px-6">
                                                 <div class="flex items-center gap-1">
-                                                    <span class="text-brand-secondary font-medium">$</span>
+                                                    <span class="text-brand-secondary font-medium">LKR</span>
                                                     <input type="number" step="0.01" name="pricePerHour" value="${venue.pricePerHour}" required
                                                            class="w-20 font-bold text-brand-dark bg-transparent border-b border-transparent focus:border-brand-primary focus:outline-none transition-colors p-1">
                                                 </div>
