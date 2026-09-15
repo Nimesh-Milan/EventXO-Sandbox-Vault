@@ -11,7 +11,7 @@ public class Admin {
     public Admin(String adminId, String username, String roleLevel) {
         this.adminId = adminId;
         this.username = username;
-        this.roleLevel = roleLevel;
+
     }
 
     public String getAdminId() {
